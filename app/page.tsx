@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Navbar from "@/components/blocks/navbar";
 import { Typewriter } from "@/components/ui/typewriter-text";
 
@@ -8,7 +7,7 @@ export default function Home() {
       <Navbar />
       <div className="container mx-auto px-4">
         <section id="home" className="h-screen flex flex-col justify-center ">
-          <div className="absolute top-8 left-8 right-8 flex items-baseline justify-between">
+          <div className="absolute top-4 left-4 right-4 flex items-baseline justify-between">
             <h1 className="text-xl md:text-2xl font-bold mb-4">СервисПол</h1>
             <div className="flex gap-4">
               <p className="mb-2">Владивосток</p>

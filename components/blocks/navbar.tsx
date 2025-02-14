@@ -3,8 +3,14 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
+interface Position {
+  left: number;
+  width: number;
+  opacity: number;
+}
+
 function Navbar() {
-  const [position, setPosition] = useState({
+  const [position, setPosition] = useState<Position>({
     left: 0,
     width: 0,
     opacity: 0,
@@ -51,7 +57,7 @@ const Tab = ({
   onClick,
 }: {
   children: React.ReactNode;
-  setPosition: any;
+  setPosition: React.Dispatch<React.SetStateAction<Position>>;
   onClick: () => void;
 }) => {
   const ref = useRef<HTMLLIElement>(null);
@@ -76,10 +82,14 @@ const Tab = ({
   );
 };
 
-const Cursor = ({ position }: { position: any }) => {
+const Cursor = ({ position }: { position: Position }) => {
   return (
     <motion.li
-      animate={position}
+      animate={{
+        left: position.left,
+        width: position.width,
+        opacity: position.opacity,
+      }}
       className="absolute z-0 h-7 rounded-full bg-white md:h-12"
     />
   );
