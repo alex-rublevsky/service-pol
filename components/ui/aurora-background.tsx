@@ -1,7 +1,6 @@
 "use client";
 import { cn } from "@/lib/styles/class-names";
-import React, { ReactNode, useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import React, { ReactNode } from "react";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   children: ReactNode;
@@ -14,12 +13,6 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <main className="relative">
       <div

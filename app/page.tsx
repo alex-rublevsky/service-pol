@@ -6,8 +6,22 @@ import { AuroraBackground } from "@/components/ui/aurora-background";
 import { motion } from "framer-motion";
 import { CenterUnderline } from "@/components/ui/underline-animation";
 import { ModeToggle } from "@/components/ui/ThemeToggleButton";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640); // 640px is Tailwind's sm breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <main>
       <Navbar />
@@ -21,18 +35,24 @@ export default function Home() {
               duration: 0.5,
               ease: "easeOut",
             }}
-            className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex items-baseline justify-between"
+            className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex items-center sm:items-baseline justify-between"
           >
-            <h1 className="text-xl md:text-2xl font-bold mb-4">СервисПол</h1>
-            <div className="flex gap-4 items-baseline text-md md:text-xl">
-              <p className="mb-2">Владивосток</p>
-              <a href="tel:89025559405">
-                <CenterUnderline
-                  label="8 902 555 9405"
-                  className="mb-6"
-                  underlineHeightRatio={0.08}
-                />
-              </a>
+            <h1 className="text-xl md:text-2xl font-bold">СервисПол</h1>
+            <div className="flex items-center sm:items-baseline gap-6 sm:gap-4">
+              <div className="flex flex-col text-md gap-0 sm:flex-row sm:gap-4 sm:items-baseline  md:text-xl">
+                <p className="mb-2">Владивосток</p>
+                <a href="tel:89025559405">
+                  {isMobile ? (
+                    <span className="text-foreground">8 902 555 9405</span>
+                  ) : (
+                    <CenterUnderline
+                      label="8 902 555 9405"
+                      className="mb-6"
+                      underlineHeightRatio={0.08}
+                    />
+                  )}
+                </a>
+              </div>
               <ModeToggle />
             </div>
           </motion.div>
