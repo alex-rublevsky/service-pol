@@ -26,7 +26,7 @@ function Navbar() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 py-4">
       <ul
-        className="relative mx-auto flex w-fit rounded-full border border-white backdrop-blur-md bg-black/80 p-1 text-white"
+        className="relative mx-auto flex w-fit rounded-full border border-black dark:border-white bg-white dark:bg-black p-1 mix-blend-difference"
         onMouseLeave={() => setPosition((pv) => ({ ...pv, opacity: 0 }))}
       >
         <Tab setPosition={setPosition} onClick={() => scrollToSection("home")}>
@@ -38,8 +38,12 @@ function Navbar() {
         >
           Калькулятор
         </Tab>
-        <Tab setPosition={setPosition} onClick={() => scrollToSection("team")}>
-          Команда
+
+        <Tab
+          setPosition={setPosition}
+          onClick={() => scrollToSection("reviews")}
+        >
+          Отзывы
         </Tab>
         <Tab setPosition={setPosition} onClick={() => scrollToSection("about")}>
           О нас
@@ -75,7 +79,7 @@ const Tab = ({
           left: ref.current.offsetLeft,
         });
       }}
-      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
+      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white dark:text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
     >
       {children}
     </li>
@@ -90,7 +94,7 @@ const Cursor = ({ position }: { position: Position }) => {
         width: position.width,
         opacity: position.opacity,
       }}
-      className="absolute z-0 h-7 rounded-full bg-white md:h-12"
+      className="absolute z-0 h-7 rounded-full bg-white dark:bg-white mix-blend-difference md:h-12"
     />
   );
 };
